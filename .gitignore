@@ -1,0 +1,33 @@
+# Build outputs
+app/build/
+build/
+app/.cxx/
+
+# Gradle
+.gradle/
+local.properties
+
+# IDE
+.idea/
+*.iml
+
+# Claude Code
+.claude/
+
+# Signing / credentials
+*.jks
+*.keystore
+keystore.properties
+Signing_Instructions.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Session/notes
+SESSION_NOTES.txt
+SSH_BUILD_PROGRESS.txt
+FEATURE_IDEAS.txt
+
+# Temp files
+*.tmp.*

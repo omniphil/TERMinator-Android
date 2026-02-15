@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="2dp">
+
+    <!-- Title Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/dialog_title_bar"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Window icon -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="■"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/select_bbs"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+
+    <!-- Content area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- BBS List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerBbsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="300dp"
+            android:nestedScrollingEnabled="true" />
+
+        <!-- Empty state message -->
+        <TextView
+            android:id="@+id/textEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="24dp"
+            android:text="@string/no_bbs_in_phonebook"
+            android:textColor="@color/term_dark_gray"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:visibility="gone" />
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/retro_button"
+            android:text="@string/cancel"
+            android:textColor="@color/term_dark_gray"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:shadowColor="#222222"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+    </LinearLayout>
+
+</LinearLayout>

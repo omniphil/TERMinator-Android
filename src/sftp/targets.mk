@@ -1,0 +1,5 @@
+SFTPLIB-MT_BUILD = $(LIBODIR)$(DIRSEP)$(LIBPREFIX)sftp_mt$(LIBFILE)
+
+all: mtlib
+
+mtlib: $(SFTPLIB-MT_BUILD)

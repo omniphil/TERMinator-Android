@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Network permission for Telnet connections -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Vibration for bell alerts -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Foreground service to keep connection alive in background -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- Notification permission for Android 13+ -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SyncTERM"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- Home Screen - Main launcher activity -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SyncTERM">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Handle telnet:// URLs -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="telnet" />
+            </intent-filter>
+        </activity>
+
+        <!-- Phonebook / BBS Listing Screen -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:label="@string/phonebook"
+            android:theme="@style/Theme.SyncTERM" />
+
+        <activity
+            android:name=".TerminalActivity"
+            android:exported="false"
+            android:label="@string/terminal_title"
+            android:theme="@style/Theme.SyncTERM.Terminal"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|density|keyboard|keyboardHidden"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Settings activity -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title"
+            android:theme="@style/Theme.SyncTERM" />
+
+        <!-- Widget configuration activities -->
+        <activity
+            android:name=".WidgetConfigActivity"
+            android:exported="true"
+            android:label="@string/widget_config_title"
+            android:theme="@style/Theme.SyncTERM"
+            android:taskAffinity=""
+            android:excludeFromRecents="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <!-- BBS Widget Provider -->
+        <receiver
+            android:name=".BbsWidgetProvider"
+            android:exported="true"
+            android:label="@string/widget_name_1">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_bbs_info" />
+        </receiver>
+
+
+        <!-- Foreground service to keep connection alive in background -->
+        <service
+            android:name=".ConnectionService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Maintains active BBS/SSH terminal connection" />
+        </service>
+
+    </application>
+
+</manifest>

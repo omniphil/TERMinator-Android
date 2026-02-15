@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Basic colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Launcher icon background (dark blue to match terminal theme) -->
+    <color name="ic_launcher_background">#0A1932</color>
+
+    <!-- App colors - Bright retro BBS theme -->
+    <color name="primary">#00AAFF</color>
+    <color name="primary_dark">#0088DD</color>
+    <color name="primary_light">#96eef8</color>
+    <color name="accent">#00FFAA</color>
+
+    <!-- Logo stripe color - matches "TERM" text in logo -->
+    <color name="logo_term_color">#335094</color>
+
+    <!-- Terminal colors - DOS 16-color palette -->
+    <color name="term_black">#000000</color>
+    <color name="term_blue">#0000AA</color>
+    <color name="term_green">#00AA00</color>
+    <color name="term_cyan">#00AAAA</color>
+    <color name="term_red">#AA0000</color>
+    <color name="term_magenta">#AA00AA</color>
+    <color name="term_brown">#AA5500</color>
+    <color name="term_light_gray">#AAAAAA</color>
+    <color name="term_dark_gray">#555555</color>
+    <color name="term_light_blue">#5555FF</color>
+    <color name="term_light_green">#55FF55</color>
+    <color name="term_light_cyan">#55FFFF</color>
+    <color name="term_light_red">#FF5555</color>
+    <color name="term_light_magenta">#FF55FF</color>
+    <color name="term_yellow">#FFFF55</color>
+    <color name="term_white">#FFFFFF</color>
+
+    <!-- Terminal background -->
+    <color name="terminal_background">#000000</color>
+    <color name="terminal_foreground">#AAAAAA</color>
+
+    <!-- Special keys bar -->
+    <color name="ctrl_button_inactive">#333355</color>
+
+    <!-- UI colors - Dark with blue tint -->
+    <color name="background">#0A1929</color>
+    <color name="grid_background">#081320</color>
+    <color name="surface">#102030</color>
+    <color name="on_background">#E0F0FF</color>
+    <color name="on_surface">#E0F0FF</color>
+</resources>

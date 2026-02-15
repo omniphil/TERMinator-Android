@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TERMinator</string>
+    <string name="terminal_title">Terminal</string>
+
+    <!-- Connection Dialog -->
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="host">Address</string>
+    <string name="port">Port</string>
+    <string name="connection_name">Connection Name</string>
+    <string name="protocol">Protocol</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <!-- Actions -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="exit">Exit</string>
+    <string name="delete_connection">DELETE CONNECTION</string>
+    <string name="edit">Edit</string>
+    <string name="settings">Settings</string>
+
+    <!-- Connection Status -->
+    <string name="connecting">Connecting...</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="disconnected_message">Connection to %1$s was closed.</string>
+    <string name="disconnect_confirm">Disconnect from %1$s?</string>
+    <string name="connection_failed">Connection failed</string>
+
+    <!-- Errors -->
+    <string name="error_invalid_host">Please enter a valid host</string>
+    <string name="error_invalid_port">Please enter a valid port (1-65535)</string>
+    <string name="error_connection_failed">Failed to connect: %1$s</string>
+    <string name="error_connection_timeout">Connection timed out - BBS not available</string>
+    <string name="error_terminal_init">Failed to initialize terminal</string>
+    <string name="error_opening_url">Could not open URL</string>
+    <string name="ssh_auth_failed">SSH authentication failed</string>
+    <string name="ssh_not_available">SSH not available - cryptlib not built</string>
+
+    <!-- Connection management -->
+    <string name="delete_confirm">Are you sure you want to delete %1$s?</string>
+    <string name="connection_deleted">%1$s deleted</string>
+    <string name="connection_saved">%1$s saved</string>
+
+    <!-- Default values -->
+    <string name="default_port">23</string>
+
+    <!-- Options -->
+    <string name="options">Options</string>
+    <string name="screen_mode">Screen Mode</string>
+    <string name="font">Font</string>
+    <string name="hide_status_line">Hide Status Line</string>
+
+    <!-- Menu -->
+    <string name="menu_new_connection">New Connection</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_about">About</string>
+    <string name="show_cursor">Show Cursor</string>
+    <string name="screen_orientation">Screen Orientation</string>
+    <string name="orientation_portrait">Portrait</string>
+    <string name="orientation_landscape">Landscape</string>
+    <string name="action_paste_text">Paste Text</string>
+    <string name="paste_empty">Nothing to paste</string>
+    <string name="action_snapshot">Snapshot</string>
+    <string name="snapshot_saved">Snapshot saved for %1$s</string>
+    <string name="snapshot_failed">Failed to save snapshot</string>
+
+    <!-- Help -->
+    <string name="help_title">Help</string>
+    <string name="help_content"><![CDATA[<big><b>Terminal Controls</b></big><br/><br/>
+
+<b>Special Keys Toolbar</b><br/>
+The toolbar at the bottom provides:<br/>
+• CTL - Control key modifier<br/>
+• ESC - Escape key<br/>
+• DEL - Backspace/Delete<br/>
+• TAB - Tab key<br/>
+• ENT - Enter/Return<br/>
+• ▲▼◀▶ - Arrow keys<br/>
+• ⋮ - Menu<br/><br/>
+
+<b>Zoom</b><br/>
+• Pinch with two fingers to zoom<br/>
+• Double-tap to reset zoom<br/><br/>
+
+<b>Pan/Scroll</b><br/>
+When zoomed past 100%, drag with one finger to pan.<br/><br/>
+
+<b>Scrollback History</b><br/>
+• Two-finger swipe down to scroll back<br/>
+• Two-finger swipe up toward live view<br/>
+• Tap or type to return to live view<br/><br/>
+
+<b>Screen Always On</b><br/>
+Screen stays on while connected.<br/><br/>
+
+<b>Keyboard</b><br/>
+Tap the terminal to show keyboard.<br/><br/>
+
+<b>Clickable URLs</b><br/>
+Tap URLs on screen to open in browser.<br/><br/>
+
+<b>Show Cursor</b><br/>
+Toggle from the ⋮ menu.<br/><br/>
+
+<b>Snapshot</b><br/>
+Capture screenshot for thumbnail:<br/>
+• Tap ⋮ menu → "Snapshot"<br/>
+• Image shows in your BBS list<br/><br/>
+
+<b>Connection Status Bar</b><br/>
+Shows duration, screen mode, data stats.<br/>
+Can be toggled per-connection in the Phonebook entry.<br/><br/>
+
+<big><b>Session Logging</b></big><br/><br/>
+
+<b>Capture Session Transcript</b><br/>
+• Tap ⋮ menu → "Start Logging"<br/>
+• Red "LOG" indicator appears<br/>
+• Tap ⋮ → "Stop Logging" when done<br/>
+• Logs saved with BBS name and timestamp<br/><br/>
+
+<big><b>File Transfer (ZMODEM)</b></big><br/><br/>
+
+<b>Auto-Detection</b><br/>
+• Downloads start automatically when BBS sends<br/>
+• Uploads prompt you to pick a file when BBS requests<br/><br/>
+
+<b>Send File</b><br/>
+• Start ZMODEM receive on BBS first<br/>
+• App will prompt you to select a file<br/>
+• Or tap ⋮ → "Send File" to pre-queue<br/><br/>
+
+<b>Receive File</b><br/>
+• Usually auto-detected<br/>
+• Or tap ⋮ → "Receive File (ZMODEM)"<br/>
+• Saves to download folder<br/><br/>
+
+<big><b>SSH Connections</b></big><br/><br/>
+
+<b>SSH Credentials</b><br/>
+• Passwords are encrypted using Android Keystore<br/>
+• Passwords are NOT exported with your BBS list<br/>
+• When editing, leave password empty to keep existing<br/><br/>
+
+<big><b>Home Screen</b></big><br/><br/>
+
+<b>Quick Connect Buttons</b><br/>
+Two customizable buttons for instant connection to your favorite BBSes.<br/><br/>
+
+<b>Setting Quick Connect</b><br/>
+Tap an empty Quick Connect button to choose a BBS from your Phonebook.<br/><br/>
+
+<b>Clearing Quick Connect</b><br/>
+Long-press an assigned Quick Connect button to clear it.<br/><br/>
+
+<big><b>Phonebook</b></big><br/><br/>
+
+<b>Reorder</b><br/>
+Long-press and drag to reorder.<br/><br/>
+
+<b>Edit/Delete</b><br/>
+Tap connection to view details or delete.<br/><br/>
+
+<b>Thumbnails</b><br/>
+Tap thumbnail to view full-size image.<br/><br/>
+
+<big><b>Settings</b></big><br/><br/>
+
+Access from ⋮ menu on main screen:<br/><br/>
+
+<b>Bell &amp; Notifications</b><br/>
+• Toggle sounds and vibration<br/>
+• Choose bell tone<br/><br/>
+
+<b>Display</b><br/>
+• Screen orientation lock<br/><br/>
+
+<b>Data Management</b><br/>
+• Download folder<br/>
+• Export/Import BBS list<br/><br/>
+
+<big><b>Home Screen Widget</b></big><br/><br/>
+
+<b>Quick Connect Widget</b><br/>
+• Long-press home screen → Widgets<br/>
+• Find TERMinator, drag to home<br/>
+• Select BBS connection<br/>
+• Tap widget to instantly connect]]></string>
+
+    <!-- About -->
+    <string name="about_title">About TERMinator</string>
+    <string name="about_description">TERMinator - BBS Terminal\nVersion 1.1.1\n\nBased on SyncTERM 1.8b\nCopyright © 2007 Stephen Hurd\nLicensed under GNU GPL v2\n\nSSH support via cryptlib (Synchronet)\nCopyright © 1992-2023 Peter Gutmann\nDual licensed: Sleepycat/GPL-compatible\n\nAndroid version by JSONBourne 2026\nJSONBourne Innovations\ndeadmodemsociety.com\n\nSource code:\nhttps://github.com/omniphil/TERMinator-Android\n\nSpecial thx to aNACHRONiST (aNSt) for the artwork and testing!</string>
+
+    <!-- File Transfer -->
+    <string name="transfer_send">Send File (ZMODEM)</string>
+    <string name="transfer_receive">Receive File (ZMODEM)</string>
+    <string name="transfer_download_folder">Download Folder</string>
+    <string name="transfer_title">File Transfer</string>
+    <string name="transfer_sending">Sending File</string>
+    <string name="transfer_receiving">Receiving File</string>
+    <string name="transfer_complete">Transfer complete: %1$s</string>
+    <string name="transfer_failed">Transfer failed: %1$s</string>
+    <string name="transfer_cancelled">Transfer cancelled</string>
+    <string name="transfer_in_progress">Transfer already in progress</string>
+    <string name="transfer_not_connected">Must be connected to transfer files</string>
+    <string name="transfer_select_folder">Select download folder</string>
+    <string name="transfer_folder_selected">Download folder set</string>
+
+    <!-- Upload queue -->
+    <string name="upload_queued">%1$s queued for upload. Start upload on BBS to begin transfer.</string>
+    <string name="upload_already_queued">A file is already queued for upload</string>
+    <string name="upload_request_detected">BBS is ready to receive a file. Select a file to upload.</string>
+    <string name="upload_cancelled">Upload cancelled</string>
+    <string name="error_file_access">Failed to access file</string>
+
+    <!-- Session Logging -->
+    <string name="logging_start">Start Logging</string>
+    <string name="logging_stop">Stop Logging</string>
+    <string name="logging_started">Session logging started</string>
+    <string name="logging_stopped">Session log saved: %1$s</string>
+    <string name="logging_failed">Failed to start logging</string>
+    <string name="logging_indicator">LOG</string>
+    <string name="logging_not_connected">Must be connected to log session</string>
+
+    <!-- Download folder setup -->
+    <string name="download_folder_title">Set Download Folder</string>
+    <string name="download_folder_prompt">Please select a folder where downloaded files will be saved. This ensures your files are kept in a permanent location.</string>
+    <string name="select_folder">Select Folder</string>
+    <string name="later">Later</string>
+
+    <!-- BBS List Import/Export -->
+    <string name="menu_export_list">Export BBS List</string>
+    <string name="menu_import_list">Import BBS List</string>
+    <string name="export_success">Exported %1$d connections</string>
+    <string name="export_failed">Failed to export connections</string>
+    <string name="import_success">Imported %1$d connections</string>
+    <string name="import_failed">Failed to import connections: %1$s</string>
+    <string name="import_no_connections">No connections found in file</string>
+    <string name="import_confirm_title">Import BBS List</string>
+    <string name="import_confirm_message">This will replace your existing %1$d connections with %2$d connections from the file. Continue?</string>
+    <string name="import_action">Import</string>
+    <string name="export_filename">terminator_bbs_list.zip</string>
+
+    <!-- Scrolling Marquee Text -->
+    <string name="marquee_text">>>> You\'re looking at a fresh zero day drop from JSONBourne &lt;&lt;&lt; TERMinator, a fresh new BBS terminal app for people who live their life 64K at a time. Greetings to all the crews still pushing pixels in 16 colors, all the SysOps who never sleep, and anyone still rocking a 1084S monitor like it\'s 1989. Special thx to aNACHRONiST (aNSt) for providing his excellent skillz and for making textmode look like pixel CG! If this thing breaks, you get to keep both pieces. Send fixes, not complaints. >>> end of line &lt;&lt;&lt;          </string>
+
+    <!-- Retro Computing History Facts -->
+    <string-array name="computing_history_facts">
+        <item>1945: ENIAC, the first general-purpose electronic computer, is completed</item>
+        <item>1947: The transistor is invented at Bell Labs</item>
+        <item>1958: Jack Kilby demonstrates the first integrated circuit</item>
+        <item>1964: BASIC programming language is created at Dartmouth</item>
+        <item>1965: Gordon Moore predicts transistor doubling every two years</item>
+        <item>1968: Douglas Engelbart demos the mouse, hypertext, and video conferencing</item>
+        <item>1969: ARPANET sends its first message from UCLA to Stanford</item>
+        <item>1970: UNIX is created at Bell Labs</item>
+        <item>1971: Intel releases the 4004, the first commercial microprocessor</item>
+        <item>1972: The C programming language is developed at Bell Labs</item>
+        <item>1973: Xerox Alto becomes the first computer with a graphical user interface</item>
+        <item>1974: Vint Cerf and Bob Kahn develop the TCP/IP protocol</item>
+        <item>1975: The Altair 8800 launches the personal computer revolution</item>
+        <item>1976: Steve Wozniak builds the Apple I in a garage</item>
+        <item>1977: The Apple II, TRS-80, and Commodore PET debut</item>
+        <item>1978: The first BBS goes online in Chicago</item>
+        <item>1979: VisiCalc launches, the killer app that sold Apple IIs</item>
+        <item>1981: IBM PC released with 16KB RAM and no hard drive</item>
+        <item>1981: The Osborne 1 becomes the first portable computer</item>
+        <item>1982: The Commodore 64 launches, selling 17 million units</item>
+        <item>1982: Time magazine names the computer \"Machine of the Year\"</item>
+        <item>1983: TCP/IP becomes the standard protocol for ARPANET</item>
+        <item>1984: Apple Macintosh debuts with legendary Super Bowl ad</item>
+        <item>1985: Commodore Amiga 1000 brings multimedia to home computing</item>
+        <item>1986: Intel releases the 386 processor at 16 MHz</item>
+        <item>1987: The Amiga 500 becomes the best-selling Amiga ever</item>
+        <item>1987: IBM PS/2 introduces the VGA graphics standard</item>
+        <item>1987: GIF image format is introduced by CompuServe</item>
+        <item>1988: MS-DOS 4.0 adds support for hard drives over 32MB</item>
+        <item>1990: The World Wide Web goes live on Christmas Day</item>
+        <item>1991: Linus Torvalds releases the first Linux kernel</item>
+        <item>1993: Mosaic browser brings the web to the masses</item>
+        <item>FidoNet at its peak connects over 35,000 BBS systems</item>
+        <item>A 1200 baud modem could transfer 1MB in about 2 hours</item>
+        <item>The C64 had more computing power than the Apollo 11</item>
+        <item>The Amiga could display 4,096 colors when PCs had 16</item>
+        <item>Early hard drives cost about $100,000 per gigabyte</item>
+        <item>ANSI art became the dominant art form on BBS systems</item>
+        <item>The sound of a modem connecting was music to our ears</item>
+        <item>Door games like Legend of the Red Dragon defined BBS gaming</item>
+        <item>SysOps were the unsung heroes of the early online world</item>
+        <item>CBBS, the first BBS, was created by Ward Christensen in 1978</item>
+        <item>TradeWars 2002 was one of the most popular BBS door games</item>
+        <item>The XMODEM protocol revolutionized file transfers on BBSes</item>
+        <item>ZMODEM became the gold standard for BBS file transfers</item>
+        <item>FidoNet used store-and-forward to relay mail between BBSes</item>
+        <item>The term \"shareware\" was coined in the BBS era</item>
+        <item>BBSes pioneered online communities before the internet</item>
+        <item>The \"elite\" BBS scene used leet speak long before the internet</item>
+        <item>Calling long distance to reach a BBS could cost a fortune</item>
+        <item>BBS door games ran as external programs launched by the BBS</item>
+        <item>File ratios required uploading to earn download credits</item>
+        <item>ANSI bombs could crash terminals with malicious escape codes</item>
+        <item>The demoscene grew from the BBS warez scene</item>
+        <item>QWK packets let users read BBS messages offline</item>
+        <item>Blueboxing and phreaking were closely tied to BBS culture</item>
+        <item>Many BBSes had only one phone line - busy signals were common</item>
+        <item>14.4k modems were blazing fast in the early 90s</item>
+        <item>28.8k and 56k modems arrived just as BBSes began to fade</item>
+        <item>Echomail let BBSes share message forums across FidoNet</item>
+        <item>NetMail was FidoNet\'s version of email between systems</item>
+        <item>Many SysOps ran BBSes from their bedrooms as teenagers</item>
+        <item>Some BBSes are still running today on Telnet</item>
+        <item>1979: Hayes introduces the Smartmodem with AT commands</item>
+        <item>1980: Usenet launches, connecting universities via UUCP</item>
+        <item>1983: CompuServe introduces CB Simulator, early chat rooms</item>
+        <item>1984: FidoNet is created by Tom Jennings in San Francisco</item>
+        <item>1985: Quantum Link launches, later becoming AOL</item>
+        <item>1986: LISTSERV creates the first email mailing lists</item>
+        <item>1988: IRC (Internet Relay Chat) is created in Finland</item>
+        <item>The Hayes AT command set became the industry standard</item>
+        <item>2400 baud modems made real-time chat practical on BBSes</item>
+        <item>V.32bis modems brought 14.4 kbps speeds in 1991</item>
+        <item>V.34 modems reached 28.8 kbps, then 33.6 kbps</item>
+        <item>V.90 and V.92 achieved 56 kbps - the analog limit</item>
+        <item>Prodigy, CompuServe, and GEnie were early online services</item>
+        <item>The Source was one of the first consumer online services</item>
+        <item>Synchronet BBS software is still actively developed today</item>
+        <item>Mystic BBS keeps the BBS tradition alive on modern systems</item>
+        <item>The FOSSIL driver standardized serial port access for BBSes</item>
+        <item>YMODEM added batch file transfers to XMODEM</item>
+        <item>Kermit protocol was popular on mainframes and minicomputers</item>
+        <item>BiModem allowed simultaneous chat and file transfers</item>
+        <item>HSLink could transfer files in both directions at once</item>
+        <item>The Telnet protocol gave BBSes new life on the internet</item>
+        <item>SSH connections now secure modern BBS communications</item>
+        <item>SyncTERM keeps classic terminal emulation alive today</item>
+        <item>Zone 1 was North America in FidoNet addressing</item>
+        <item>A FidoNet address looked like 1:123/456.7</item>
+        <item>Points were users who picked up mail from a BBS node</item>
+    </string-array>
+
+    <!-- Home Screen -->
+    <string name="home">Home</string>
+    <string name="phonebook">Phonebook</string>
+    <string name="quick_connect_1_default">Quick Connect 1</string>
+    <string name="quick_connect_2_default">Quick Connect 2</string>
+    <string name="quick_connect_not_set">No BBS assigned. Long-press to select a BBS.</string>
+    <string name="quick_connect_choose_slot">Set as Quick Connect</string>
+    <string name="select_bbs">Select BBS</string>
+    <string name="no_bbs_in_phonebook">No BBSes in Phonebook.\nAdd one first.</string>
+    <string name="quick_connect_slot_1">Quick Connect 1</string>
+    <string name="quick_connect_slot_2">Quick Connect 2</string>
+    <string name="quick_connect_assigned">%1$s assigned to Quick Connect %2$d</string>
+    <string name="quick_connect_clear">Clear Quick Connect %1$d</string>
+    <string name="quick_connect_clear_confirm">Remove %1$s from Quick Connect %2$d?</string>
+    <string name="quick_connect_cleared">Quick Connect %1$d cleared</string>
+
+    <!-- Widget -->
+    <string name="widget_description">Quick connect to your favorite BBS (1 slot)</string>
+    <string name="widget_description_2">Quick connect widget with 2 BBS slots</string>
+    <string name="widget_description_3">Quick connect widget with 3 BBS slots</string>
+    <string name="widget_config_title">Select BBS</string>
+    <string name="widget_config_subtitle">Tap a BBS to create a quick-connect widget</string>
+    <string name="widget_config_multi_title">Configure Widget</string>
+    <string name="widget_no_connections">No saved connections. Add a BBS first.</string>
+    <string name="widget_selecting_slot">Selecting slot %1$s</string>
+    <string name="widget_selecting_slot_default">Tap a BBS to assign to each slot</string>
+    <string name="widget_slot_selected">%1$s assigned to slot %2$d</string>
+    <string name="widget_slot_empty">(empty)</string>
+    <string name="widget_select_bbs_slot">Select BBS for slot %1$d</string>
+    <string name="widget_done">Done</string>
+    <string name="widget_name_1">1 BBS Slot Widget</string>
+    <string name="widget_name_2">2 BBS Slots Widget</string>
+    <string name="widget_name_3">3 BBS Slots Widget</string>
+    <string name="widget_tap_to_setup">Tap to setup</string>
+    <string name="widget_empty">Empty</string>
+
+    <!-- Connection Service Notification -->
+    <string name="notification_channel_name">Active Connection</string>
+    <string name="notification_channel_description">Shows when connected to a BBS to keep the connection alive</string>
+    <string name="notification_connected_title">Connected to %1$s</string>
+    <string name="notification_connected_text">%1$s:%2$d</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_bell">Bell &amp; Notifications</string>
+    <string name="settings_section_display">Display</string>
+    <string name="settings_section_data">Data Management</string>
+    <string name="settings_section_about">About</string>
+    <string name="settings_sound_enabled">Bell Sound</string>
+    <string name="settings_sound_enabled_desc">Play a sound when BBS sends a bell tone</string>
+    <string name="settings_bell_sound">Bell Sound</string>
+    <string name="settings_bell_volume">Bell Volume</string>
+    <string name="settings_test_sound">Test Sound</string>
+    <string name="settings_vibration_enabled">Vibration</string>
+    <string name="settings_vibration_enabled_desc">Vibrate when BBS sends a bell tone</string>
+    <string name="settings_download_folder">Set Download Folder</string>
+    <string name="show_status_bar">Show Status Bar</string>
+
+    <!-- Bell sounds - sorted by year, oldest to newest -->
+    <string-array name="bell_sounds">
+        <item>1975 • Altair 8800</item>
+        <item>1977 • Apple II</item>
+        <item>1977 • Commodore PET</item>
+        <item>1977 • TRS-80</item>
+        <item>1978 • DEC VT100</item>
+        <item>1979 • Atari 800</item>
+        <item>1980 • Apple III</item>
+        <item>1980 • Commodore VIC-20</item>
+        <item>1980 • Tandy Color Computer</item>
+        <item>1981 • IBM PC</item>
+        <item>1981 • BBC Micro</item>
+        <item>1981 • Sinclair ZX81</item>
+        <item>1981 • TI-99/4A</item>
+        <item>1981 • Osborne 1</item>
+        <item>1982 • Commodore 64</item>
+        <item>1982 • ZX Spectrum</item>
+        <item>1982 • Kaypro</item>
+        <item>1982 • Colecovision</item>
+        <item>1983 • NES / Famicom</item>
+        <item>1983 • MSX</item>
+        <item>1984 • Macintosh</item>
+        <item>1984 • Amstrad CPC</item>
+        <item>1984 • Tandy 1000</item>
+        <item>1984 • IBM PCjr</item>
+        <item>1985 • Amiga</item>
+        <item>1987 • Acorn Archimedes</item>
+        <item>1988 • NeXT Computer</item>
+        <item>1989 • Game Boy</item>
+        <item>1989 • Sun SPARCstation</item>
+        <item>System Default</item>
+    </string-array>
+
+    <!-- Bell sound descriptions with chip/hardware info - sorted by year -->
+    <string-array name="bell_sound_descriptions">
+        <item>No Speaker (RF Interference) • Front panel music via CPU noise on AM radio</item>
+        <item>1-bit Speaker Toggle • Two-tone sequence (880Hz → 440Hz), high-low pattern</item>
+        <item>MOS 6522 VIA + Piezo • Simple beeper, very short clicky tick with fast decay</item>
+        <item>Cassette Port Audio • Buzzy square wave at 450Hz with frequency wobble</item>
+        <item>DC305 Bell Generator • The canonical terminal bell, clean 750Hz tone</item>
+        <item>POKEY C012294 Chip • Mixed frequencies with buzzy complex character</item>
+        <item>MOS 6522 VIA + 6-bit DAC • Business computer, slightly different than Apple II</item>
+        <item>MOS 6560/6561 VIC Chip • 3 square wave voices, simpler predecessor to SID</item>
+        <item>Motorola MC6847 + 6-bit DAC • Direct digital audio, unique character</item>
+        <item>Intel 8253 PIT + PC Speaker • Square wave at 1000Hz, the harsh iconic beep</item>
+        <item>Texas Instruments SN76489 • Descending frequency sweep (2000Hz → 800Hz)</item>
+        <item>Ferranti ULA + Piezo • Ultra-simple 1-bit toggle, more primitive than Spectrum</item>
+        <item>TMS9919 PSG Chip • Distinctive warble/vibrato effect with two voices</item>
+        <item>Piezo Speaker • First portable computer, high-pitched 2kHz tinny with ringing</item>
+        <item>MOS 6581/8580 SID Chip • Pulse wave with modulating duty cycle, warm and rich</item>
+        <item>Ferranti ULA Beeper (1-bit) • Rapid pitch bend, starts high, drops, stabilizes</item>
+        <item>Piezo Beeper • Popular CP/M portable, clean business-like square wave</item>
+        <item>Texas Instruments SN76489 • Game console style, descending arpeggio</item>
+        <item>Ricoh 2A03 APU • Triangle wave bass + 25% duty pulse, warm NES sound</item>
+        <item>General Instrument AY-3-8910 • Quick descending two-note, Japanese standard</item>
+        <item>Apple Sound Chip (ASC) • Chorused 480Hz with additive synthesis</item>
+        <item>General Instrument AY-3-8912 • Quick 3-note arpeggio, bright and punchy</item>
+        <item>Texas Instruments SN76496 (3-voice) • C major chord, richer than PC speaker</item>
+        <item>Texas Instruments SN76496 (3-voice) • Two voices in octave, PCjr home style</item>
+        <item>MOS 8364 Paula (4-channel) • Warm 8-bit PCM with harmonics, stereo output</item>
+        <item>VIDC1 (8-channel PCM) • Wavetable-style harmonic-rich bell timbre</item>
+        <item>Motorola DSP56001 + DAC • FM synthesis, sophisticated curved envelope</item>
+        <item>Sharp LR35902 APU (4-ch) • Pulse wave with duty sweep, 4-bit DAC</item>
+        <item>AMD AM79C30A Codec • Clean Unix beep, pure 440Hz sine, professional</item>
+        <item>Uses your device\'s default notification sound</item>
+    </string-array>
+</resources>

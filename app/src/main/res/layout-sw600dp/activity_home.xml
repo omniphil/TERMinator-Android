@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:fitsSystemWindows="true"
+    tools:context=".HomeActivity">
+
+    <!-- Grid pattern overlay (full screen background) -->
+    <View
+        android:id="@+id/gridBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/grid_pattern"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Header with logo and menu -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Logo at 40% width on tablets, centered, with toolbar overlay -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/headerLogo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/header_logo"
+                android:contentDescription="@string/app_name"
+                app:layout_constraintWidth_percent="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Version number in bottom right of header -->
+            <TextView
+                android:id="@+id/textVersion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/headerLogo" />
+
+            <!-- Invisible toolbar for menu only -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:contentInsetStart="0dp"
+                app:contentInsetEnd="0dp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Accent line at bottom of header -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/logo_term_color" />
+
+        <!-- Scrolling BBS warez text marquee with CRT effect -->
+        <com.syncterm.android.CrtMarqueeView
+            android:id="@+id/marqueeText"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:background="@drawable/grid_pattern" />
+
+    </LinearLayout>
+
+    <!-- Bottom button panel - all 4 buttons on same row for tablets -->
+    <LinearLayout
+        android:id="@+id/buttonPanel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Spacer to push content to center -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Quick Connect 1 - using ConstraintLayout for aspect ratio -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/quickConnect1Container"
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/retro_button_primary"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Invisible spacer to enforce 8:5 aspect ratio (640x400) -->
+            <View
+                android:id="@+id/spacer1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="8:5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Snapshot image (hidden by default) -->
+            <ImageView
+                android:id="@+id/imageQuickConnect1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                android:contentDescription="@string/quick_connect_slot_1"
+                app:layout_constraintTop_toTopOf="@id/spacer1"
+                app:layout_constraintBottom_toBottomOf="@id/spacer1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Icon + Name (shown when BBS assigned but no snapshot) -->
+            <LinearLayout
+                android:id="@+id/layoutQuickConnect1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/spacer1"
+                app:layout_constraintBottom_toBottomOf="@id/spacer1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_terminal"
+                    android:alpha="0.7" />
+
+                <TextView
+                    android:id="@+id/textQuickConnect1Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/term_light_green"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:ellipsize="end"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+
+            <!-- Default text (shown when no BBS assigned) -->
+            <TextView
+                android:id="@+id/textQuickConnect1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/quick_connect_1_default"
+                android:textColor="@color/term_light_green"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="4dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@id/spacer1"
+                app:layout_constraintBottom_toBottomOf="@id/spacer1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Quick Connect 2 - using ConstraintLayout for aspect ratio -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/quickConnect2Container"
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/retro_button_primary"
+            android:clickable="true"
+            android:focusable="true">
+
+            <!-- Invisible spacer to enforce 8:5 aspect ratio (640x400) -->
+            <View
+                android:id="@+id/spacer2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="8:5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Snapshot image (hidden by default) -->
+            <ImageView
+                android:id="@+id/imageQuickConnect2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                android:contentDescription="@string/quick_connect_slot_2"
+                app:layout_constraintTop_toTopOf="@id/spacer2"
+                app:layout_constraintBottom_toBottomOf="@id/spacer2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <!-- Icon + Name (shown when BBS assigned but no snapshot) -->
+            <LinearLayout
+                android:id="@+id/layoutQuickConnect2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="8dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toTopOf="@id/spacer2"
+                app:layout_constraintBottom_toBottomOf="@id/spacer2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_terminal"
+                    android:alpha="0.7" />
+
+                <TextView
+                    android:id="@+id/textQuickConnect2Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/term_light_green"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace"
+                    android:ellipsize="end"
+                    android:maxLines="2" />
+
+            </LinearLayout>
+
+            <!-- Default text (shown when no BBS assigned) -->
+            <TextView
+                android:id="@+id/textQuickConnect2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="@string/quick_connect_2_default"
+                android:textColor="@color/term_light_green"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:paddingHorizontal="4dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:ellipsize="end"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@id/spacer2"
+                app:layout_constraintBottom_toBottomOf="@id/spacer2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Phonebook -->
+        <ImageButton
+            android:id="@+id/buttonPhonebook"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_phone_retro"
+            android:scaleType="fitCenter"
+            android:background="@drawable/retro_button"
+            android:contentDescription="@string/phonebook" />
+
+        <!-- Settings -->
+        <ImageButton
+            android:id="@+id/buttonSettings"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:padding="12dp"
+            android:src="@drawable/ic_settings_gear"
+            android:scaleType="fitCenter"
+            android:background="@drawable/retro_button"
+            android:contentDescription="@string/settings" />
+
+        <!-- Spacer to balance centering -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- Splash image container - constrained between header and ticker -->
+    <FrameLayout
+        android:id="@+id/splashBackgroundContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintBottom_toTopOf="@id/historyTicker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.syncterm.android.GlitchImageView
+            android:id="@+id/splashBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:src="@drawable/splash_screen"
+            android:alpha="1" />
+
+    </FrameLayout>
+
+    <!-- Retro computing history ticker - aligned with button panel -->
+    <com.syncterm.android.HistoryTickerView
+        android:id="@+id/historyTicker"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/buttonPanel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

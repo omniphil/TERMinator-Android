@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Retro-style ZMODEM transfer dialog matching app theme -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <!-- Outer border (accent blue) -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/logo_term_color"
+        android:padding="2dp">
+
+        <!-- Inner area (dark background) - fixed width for consistency -->
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/grid_background"
+            android:padding="12dp">
+
+            <!-- Title bar with centered text -->
+            <TextView
+                android:id="@+id/transferTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" ZMODEM Transfer "
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="monospace"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/logo_term_color"
+                android:paddingVertical="4dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- File info row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+
+                <TextView
+                    android:id="@+id/fileNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="File: "
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <TextView
+                    android:id="@+id/fileName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="@color/primary_light"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:ellipsize="end"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <!-- Retro text-based progress bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/progressBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="[░░░░░░░░░░░░░░░░░░░░░░░░░]"
+                    android:textColor="@color/primary"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="-0.05" />
+
+                <TextView
+                    android:id="@+id/progressPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  0%"
+                    android:textColor="@color/primary_light"
+                    android:textSize="11sp"
+                    android:fontFamily="monospace"
+                    android:minWidth="44dp"
+                    android:gravity="end" />
+            </LinearLayout>
+
+            <!-- Size info -->
+            <TextView
+                android:id="@+id/progressText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bytes: 0 / 0"
+                android:textColor="@color/primary"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="2dp" />
+
+            <!-- Speed info -->
+            <TextView
+                android:id="@+id/speedText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Speed: 0 cps"
+                android:textColor="@color/primary"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Status message -->
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Waiting..."
+                android:textColor="@color/accent"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Retro-style buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/cancelButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[ Cancel ]"
+                    android:textColor="@color/term_light_red"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <TextView
+                    android:id="@+id/closeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[  OK  ]"
+                    android:textColor="@color/accent"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

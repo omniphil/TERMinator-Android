@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/terminal_background"
+    android:fitsSystemWindows="true"
+    tools:context=".TerminalActivity">
+
+    <com.syncterm.android.TerminalView
+        android:id="@+id/terminalView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keepScreenOn="true" />
+
+    <!-- Connection status bar (row 26) -->
+    <LinearLayout
+        android:id="@+id/connectionStatusBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="2dp"
+        android:background="#1A1A2E">
+
+        <!-- BBS name and protocol -->
+        <TextView
+            android:id="@+id/statusName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFAA00"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:paddingEnd="8dp"
+            android:singleLine="true"
+            android:ellipsize="end" />
+
+        <!-- Connection time -->
+        <TextView
+            android:id="@+id/statusTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#00AA00"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:text="00:00:00" />
+
+        <!-- Screen mode -->
+        <TextView
+            android:id="@+id/statusMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#AAAAAA"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:paddingHorizontal="8dp"
+            android:text="80x25" />
+
+        <!-- Logging indicator -->
+        <TextView
+            android:id="@+id/statusLogging"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FF5555"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:paddingHorizontal="8dp"
+            android:text="@string/logging_indicator"
+            android:visibility="gone" />
+
+        <!-- Bytes sent/received -->
+        <TextView
+            android:id="@+id/statusBytes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00AAAA"
+            android:textSize="11sp"
+            android:fontFamily="monospace"
+            android:text="↑0 ↓0" />
+
+    </LinearLayout>
+
+    <!-- Special keys toolbar -->
+    <LinearLayout
+        android:id="@+id/specialKeysBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="4dp"
+        android:background="#1A1A2E">
+
+        <Button
+            android:id="@+id/btnCtrl"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="CTL"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnEsc"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="ESC"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnBackspace"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="DEL"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnTab"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="TAB"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnEnter"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="ENT"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnUp"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="▲"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnDown"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="▼"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnLeft"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="◀"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnRight"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="▶"
+            android:textSize="14sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="⋮"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:backgroundTint="#333355"
+            android:padding="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp" />
+
+    </LinearLayout>
+
+    <!-- Hidden EditText to capture soft keyboard input -->
+    <EditText
+        android:id="@+id/hiddenInput"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:background="@android:color/transparent"
+        android:textColor="@android:color/transparent"
+        android:inputType="textVisiblePassword"
+        android:imeOptions="actionNone|flagNoExtractUi|flagNoFullscreen|flagNoPersonalizedLearning"
+        android:importantForAutofill="no"
+        android:privateImeOptions="nm"
+        android:maxLines="1"
+        android:capitalize="none"
+        tools:ignore="LabelFor" />
+
+    <!-- Connection status overlay -->
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#80000000"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:text="Connecting..."
+        tools:visibility="visible" />
+
+</LinearLayout>

@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="2dp">
+
+    <!-- Title Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/dialog_title_bar"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Window icon -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="■"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CONNECTION"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+
+    <!-- Scrollable content area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="8dp">
+
+        <!-- Connection Section -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/retro_section_border"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <!-- Name field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/connection_name"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_edittext"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/term_dark_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+                <!-- Host field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/host"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <EditText
+                    android:id="@+id/editHost"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_edittext"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/term_dark_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
+
+                <!-- Port field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/port"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <EditText
+                    android:id="@+id/editPort"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_edittext"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/term_dark_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:text="@string/default_port" />
+
+                <!-- Protocol field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/protocol"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <Spinner
+                    android:id="@+id/spinnerProtocol"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/retro_spinner"
+                    android:popupBackground="#0A0A15" />
+
+            </LinearLayout>
+
+            <!-- Section label overlaid on border -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:paddingHorizontal="4dp"
+                android:background="#050510"
+                android:text=" CONNECTION "
+                android:textColor="@color/term_cyan"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- SSH Credentials Section (visible only when SSH is selected) -->
+        <FrameLayout
+            android:id="@+id/sshCredentialsSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/retro_section_border"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <!-- Username field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <EditText
+                    android:id="@+id/editUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_edittext"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/term_dark_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:inputType="text"
+                    android:maxLines="1" />
+
+                <!-- Password field -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <EditText
+                    android:id="@+id/editPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/retro_edittext"
+                    android:paddingHorizontal="8dp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/term_dark_gray"
+                    android:textSize="14sp"
+                    android:fontFamily="monospace"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+
+            </LinearLayout>
+
+            <!-- Section label overlaid on border -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:paddingHorizontal="4dp"
+                android:background="#050510"
+                android:text=" SSH CREDENTIALS "
+                android:textColor="@color/term_cyan"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- Options Section -->
+        <FrameLayout
+            android:id="@+id/optionsSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/retro_section_border"
+                android:padding="12dp"
+                android:layout_marginTop="8dp">
+
+                <!-- Screen Mode -->
+                <TextView
+                    android:id="@+id/screenModeLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/screen_mode"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <Spinner
+                    android:id="@+id/spinnerScreenMode"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_spinner"
+                    android:popupBackground="#0A0A15" />
+
+                <!-- Font -->
+                <TextView
+                    android:id="@+id/fontLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/font"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+
+                <Spinner
+                    android:id="@+id/spinnerFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/retro_spinner"
+                    android:popupBackground="#0A0A15" />
+
+                <!-- Show Status Bar -->
+                <CheckBox
+                    android:id="@+id/checkShowStatusBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/show_status_bar"
+                    android:textColor="@color/term_cyan"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace"
+                    android:buttonTint="#00FF00"
+                    android:checked="true" />
+
+            </LinearLayout>
+
+            <!-- Section label overlaid on border -->
+            <TextView
+                android:id="@+id/optionsHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:paddingHorizontal="4dp"
+                android:background="#050510"
+                android:text=" OPTIONS "
+                android:textColor="@color/term_cyan"
+                android:textSize="11sp"
+                android:fontFamily="monospace"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <!-- Buttons Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="4dp">
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/retro_button"
+                android:text="@string/save"
+                android:textColor="@color/term_light_cyan"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:shadowColor="#004444"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+
+            <Button
+                android:id="@+id/buttonConnect"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/retro_button_primary"
+                android:text="@string/connect"
+                android:textColor="@color/term_light_green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:shadowColor="#004400"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+
+        </LinearLayout>
+
+        <!-- Delete and Cancel buttons row -->
+        <LinearLayout
+            android:id="@+id/deleteRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/deleteButton"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/retro_button_danger"
+                android:text="@string/delete"
+                android:textColor="@color/term_light_red"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:shadowColor="#440000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/retro_button"
+                android:text="@string/cancel"
+                android:textColor="@color/term_dark_gray"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:shadowColor="#222222"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2" />
+
+        </LinearLayout>
+
+        <!-- Cancel button for new connections (when delete row is hidden) -->
+        <Button
+            android:id="@+id/cancelLink"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/retro_button"
+            android:text="@string/cancel"
+            android:textColor="@color/term_dark_gray"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:shadowColor="#222222"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

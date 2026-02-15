@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/dialog_background"
+    android:padding="2dp">
+
+    <!-- Title Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/dialog_title_bar"
+        android:padding="8dp"
+        android:gravity="center_vertical">
+
+        <!-- Window icon -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="■"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginEnd="8dp" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/quick_connect_choose_slot"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+    </LinearLayout>
+
+    <!-- Content area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp">
+
+        <!-- BBS Name being assigned -->
+        <TextView
+            android:id="@+id/textBbsName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/term_light_cyan"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Quick Connect 1 Button -->
+        <Button
+            android:id="@+id/buttonSlot1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/retro_button_primary"
+            android:text="@string/quick_connect_slot_1"
+            android:textColor="@color/term_light_green"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:shadowColor="#004400"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+        <!-- Quick Connect 2 Button -->
+        <Button
+            android:id="@+id/buttonSlot2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/retro_button_primary"
+            android:text="@string/quick_connect_slot_2"
+            android:textColor="@color/term_light_green"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:shadowColor="#004400"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+        <!-- Cancel Button -->
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/retro_button"
+            android:text="@string/cancel"
+            android:textColor="@color/term_dark_gray"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:shadowColor="#222222"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+    </LinearLayout>
+
+</LinearLayout>

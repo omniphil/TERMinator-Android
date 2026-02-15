@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_paste_text"
+        android:title="@string/action_paste_text"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_snapshot"
+        android:title="@string/action_snapshot"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_logging"
+        android:title="@string/logging_start"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_send_file"
+        android:title="@string/transfer_send"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_receive_file"
+        android:title="@string/transfer_receive"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_cursor"
+        android:title="@string/show_cursor"
+        android:checkable="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_toggle_status_bar"
+        android:title="@string/show_status_bar"
+        android:checkable="true"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_disconnect"
+        android:title="@string/disconnect"
+        app:showAsAction="never" />
+
+</menu>

@@ -1,0 +1,70 @@
+To build SyncTERM, you *will need* the following bits from the Synchronet CVS
+tree:
+
+src/build/*
+src/conio/*
+src/sbbs3/telnet.c
+src/sbbs3/telnet.h
+src/sbbs3/zmodem.c
+src/sbbs3/zmodem.h
+src/sbbs3/xmodem.h
+src/sbbs3/sexyz.h
+src/hash/*
+src/encode/*
+src/syncterm/*
+src/uifc/*
+src/xpdev/*
+src/comio/*
+3rdp/build/Common.gmake
+3rdp/build/Common.make
+3rdp/build/GNUmakefile
+3rdp/build/targets.mk
+3rdp/dist/cryptlib.zip
+3rdp/dist/*.patch
+
+The directory structure under src *must* be kept intact.  Once you have all
+this in place, a simple "make" should build everything you need.  If you're
+using *nix you must use GNU Make... under some systems (Such a most BSDs) this
+is optional and installed as "gmake" rather than "make".
+
+When building from the source archive, need to set SRC_ROOT to the extracted
+path name to locate the bundled 3rd party sources like so:
+make SRC_ROOT=/path/to/syncterm-20120226
+This can be done using backticks as well:
+make SRC_ROOT=`cd .. ; pwd`
+or:
+make SRC_ROOT=`realpath ..`
+
+Refer to src/build/Common.gmake or src/build/Common.bmake for details of some
+of the make options the build system supports.
+
+Release builds for Mac OS X use the following command line:
+make RELEASE=1 USE_SDL_AUDIO=1 PREFIX=/usr
+
+The package is generated and copied do a disk image which is then converted
+with the following command:
+hdiutil convert ~/Desktop/SyncTERM.dmg -format UDRO -o /Volumes/Synchronet/sbbs/web/root/syncterm.bbsdev.net/SyncTERM.dmg -ov
+
+Release builds for Win32 using MinGW32 use the following command line:
+gmake CC=mingw32-gcc VERBOSE=please AR=mingw32-ar AS=mingw32-as RANLIB=mingw32-ranlib RELEASE=1 CXX=mingw32-g++ WINDRES=mingw32-windres
+
+32-bit Release builds for Win32 using MinGW-w64 use the following command line:
+gmake AR=i686-w64-mingw32-ar AS=i686-w64-mingw32-as CC=i686-w64-mingw32-gcc CXX=i686-w64-mingw32-g++ RANLIB=i686-w64-mingw32-ranlib WINDRES=i686-w64-mingw32-windres RELEASE=1 VERBOSE=1
+
+32-bit CMake builds for Win32 using MinGW-w64 on my system uses:
+cmake -DWITHOUT_ALSA=ON -DWITHOUT_PULSEAUDIO=ON -DCMAKE_TOOLCHAIN_FILE=/synchronet/src/sbbs/src/syncterm/FBSD-mingw64.cmake ..
+cmake --build . -j4
+This does not rebuild cryptlib, so is suspect.
+
+64-bit Release builds for Win32 using MinGW-w64 use the following command line:
+gmake AR=x86_64-w64-mingw32-ar AS=x86_64-w64-mingw32-as CC=x86_64-w64-mingw32-gcc CXX=x86_64-w64-mingw32-g++ RANLIB=x86_64-w64-mingw32-ranlib WINDRES=x86_64-w64-mingw32-windres RELEASE=1 VERBOSE=1
+
+Release builds for Emscripten use the following command line:
+gmake CC=emcc VERBOSE=please AR=emar RANLIB=emranlib RELEASE=1 CXX=emc++ os=emscripten
+
+Release builds of jsdoor (not related at all)
+gmake jsdoor NO_LD_RUN_PATH=dumbass CC=mingw32-gcc VERBOSE=please AR=mingw32-ar AS=mingw32-as RANLIB=mingw32-ranlib RELEASE=1 CXX=mingw32-g++ WINDRES=mingw32-windres JSLIBDIR=../../3rdp/win32.release/mozjs/bin/ JSINCLUDE=../../3rdp/win32.release/mozjs/include/ JSLIB=mozjs
+
+Building a dpkg for a Debian-like OS
+gmake RELEASE=1 PREFIX=/usr dpkg
+

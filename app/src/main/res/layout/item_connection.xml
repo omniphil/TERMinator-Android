@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="8dp"
+    android:paddingVertical="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/card_background"
+        android:foreground="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+
+        <!-- Terminal icon or snapshot thumbnail -->
+        <ImageView
+            android:id="@+id/iconTerminal"
+            android:layout_width="120dp"
+            android:layout_height="75dp"
+            android:src="@drawable/ic_terminal"
+            android:scaleType="fitCenter"
+            android:background="#FF000000"
+            android:contentDescription="@string/terminal_title" />
+
+        <!-- Text content -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/primary_light"
+                android:textStyle="bold"
+                tools:text="aBSiNTHE BBS" />
+
+            <TextView
+                android:id="@+id/textHost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="#88AABBCC"
+                tools:text="absinthebbs.net:1940" />
+
+        </LinearLayout>
+
+        <!-- Drag handle indicator -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_sort_by_size"
+            android:alpha="0.3"
+            android:contentDescription="Drag to reorder" />
+
+    </LinearLayout>
+
+</FrameLayout>

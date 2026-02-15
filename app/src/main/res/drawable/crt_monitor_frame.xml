@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="80dp"
+    android:height="60dp"
+    android:viewportWidth="80"
+    android:viewportHeight="60">
+
+    <!-- Monitor outer bezel - main frame -->
+    <path
+        android:fillColor="#6A6A7A"
+        android:pathData="M4,2 L76,2 Q80,2 80,6 L80,42 Q80,46 76,46 L4,46 Q0,46 0,42 L0,6 Q0,2 4,2 Z" />
+
+    <!-- Bezel highlight (top edge for 3D effect) -->
+    <path
+        android:fillColor="#8A8A9A"
+        android:pathData="M5,3 L75,3 Q78,3 78,6 L78,8 L2,8 L2,6 Q2,3 5,3 Z" />
+
+    <!-- Bezel shadow (bottom/right edge) -->
+    <path
+        android:fillColor="#4A4A5A"
+        android:pathData="M2,40 L78,40 L78,42 Q78,44 75,44 L5,44 Q2,44 2,42 Z" />
+
+    <!-- Inner bezel / screen border -->
+    <path
+        android:fillColor="#2A2A3A"
+        android:pathData="M6,6 L74,6 Q76,6 76,8 L76,40 Q76,42 74,42 L6,42 Q4,42 4,40 L4,8 Q4,6 6,6 Z" />
+
+    <!-- Screen area (dark) -->
+    <path
+        android:fillColor="#0A0A14"
+        android:pathData="M8,8 L72,8 Q74,8 74,10 L74,38 Q74,40 72,40 L8,40 Q6,40 6,38 L6,10 Q6,8 8,8 Z" />
+
+    <!-- Screen phosphor glow border -->
+    <path
+        android:strokeColor="#008800"
+        android:strokeWidth="1"
+        android:fillColor="#00000000"
+        android:pathData="M8,8 L72,8 Q74,8 74,10 L74,38 Q74,40 72,40 L8,40 Q6,40 6,38 L6,10 Q6,8 8,8 Z" />
+
+    <!-- Stand neck -->
+    <path
+        android:fillColor="#4A4A5A"
+        android:pathData="M34,46 L46,46 L46,52 L34,52 Z" />
+
+    <!-- Stand base -->
+    <path
+        android:fillColor="#6A6A7A"
+        android:pathData="M24,52 L56,52 Q58,52 58,54 L58,58 Q58,60 56,60 L24,60 Q22,60 22,58 L22,54 Q22,52 24,52 Z" />
+
+    <!-- Stand base highlight -->
+    <path
+        android:fillColor="#8A8A9A"
+        android:pathData="M24,52 L56,52 Q58,52 58,54 L22,54 Q22,52 24,52 Z" />
+
+</vector>

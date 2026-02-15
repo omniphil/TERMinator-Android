@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- CRT Monitor frame with stand - fills the widget -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/crt_monitor_frame"
+        android:scaleType="fitXY" />
+
+    <!-- Screen content area - positioned inside the CRT screen -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Content image (green text or snapshot) - positioned in screen area -->
+        <ImageView
+            android:id="@+id/widgetIcon"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/crt_screen_text"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/app_name" />
+
+        <!-- BBS name label - below the CRT but above the stand -->
+        <TextView
+            android:id="@+id/widgetBbsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:text="@string/app_name"
+            android:textColor="#00FF00"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:shadowColor="#000000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2" />
+
+    </LinearLayout>
+
+</FrameLayout>
