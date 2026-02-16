@@ -665,7 +665,7 @@ class HomeActivity : AppCompatActivity() {
 
         // Make URLs clickable
         dialog.findViewById<TextView>(android.R.id.message)?.apply {
-            Linkify.addLinks(this, Linkify.WEB_URLS)
+            Linkify.addLinks(this, Linkify.WEB_URLS or Linkify.EMAIL_ADDRESSES)
             movementMethod = LinkMovementMethod.getInstance()
         }
     }

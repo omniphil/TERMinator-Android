@@ -421,17 +421,6 @@ void get_term_win_size(int *width, int *height) {
     if (height) *height = 25;
 }
 
-// TelnetS (TLS Telnet) - not implemented
-int telnets_connect(struct bbslist *bbs) {
-    LOGW("telnets_connect called - TelnetS not supported on Android");
-    (void)bbs;
-    return -1;
-}
-
-void telnets_close(void) {
-    // No-op
-}
-
 // BBS list INI reading - not needed for Android connection flow
 str_list_t iniReadBBSList(FILE *fp, bool userList) {
     (void)fp; (void)userList;

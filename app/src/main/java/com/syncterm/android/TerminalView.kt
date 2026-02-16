@@ -1198,6 +1198,12 @@ class TerminalView @JvmOverloads constructor(
 
             override fun sendKeyEvent(event: KeyEvent): Boolean {
                 if (event.action == KeyEvent.ACTION_DOWN) {
+                    // Explicit Enter key check - some IMEs send KEYCODE_ENTER
+                    // without a unicodeChar
+                    if (event.keyCode == KeyEvent.KEYCODE_ENTER) {
+                        onKeyInput?.invoke(13) // CR
+                        return true
+                    }
                     val char = event.unicodeChar
                     if (char != 0) {
                         onCharacterInput?.invoke(char.toChar())
@@ -1205,6 +1211,12 @@ class TerminalView @JvmOverloads constructor(
                     }
                 }
                 return super.sendKeyEvent(event)
+            }
+
+            override fun performEditorAction(actionCode: Int): Boolean {
+                // Some IMEs dispatch Enter as an editor action instead of a key event
+                onKeyInput?.invoke(13) // CR
+                return true
             }
 
             override fun getCursorCapsMode(reqModes: Int): Int = 0  // Never auto-caps

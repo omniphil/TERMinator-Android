@@ -326,7 +326,7 @@ class MainActivity : AppCompatActivity() {
         spinnerFont.adapter = fontAdapter
 
         // Setup protocol spinner
-        val protocols = arrayOf("Telnet", "SSH")
+        val protocols = arrayOf("Telnet", "SSH", "TelnetS")
         val protocolAdapter = ArrayAdapter(this, R.layout.spinner_item_retro, protocols)
         protocolAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_retro)
         spinnerProtocol.adapter = protocolAdapter
@@ -339,10 +339,16 @@ class MainActivity : AppCompatActivity() {
 
                 // Auto-switch port when protocol changes (only if port is default)
                 val currentPort = portEdit.text.toString().toIntOrNull() ?: 0
-                if (isSsh && currentPort == 23) {
-                    portEdit.setText("22")
-                } else if (!isSsh && currentPort == 22) {
-                    portEdit.setText("23")
+                when (position) {
+                    SavedConnection.PROTOCOL_SSH -> {
+                        if (currentPort == 23 || currentPort == 992) portEdit.setText("22")
+                    }
+                    SavedConnection.PROTOCOL_TELNETS -> {
+                        if (currentPort == 23 || currentPort == 22) portEdit.setText("992")
+                    }
+                    else -> {
+                        if (currentPort == 22 || currentPort == 992) portEdit.setText("23")
+                    }
                 }
             }
 
@@ -456,7 +462,7 @@ class MainActivity : AppCompatActivity() {
         portEdit.setText(connection.port.toString())
 
         // Setup protocol spinner
-        val protocols = arrayOf("Telnet", "SSH")
+        val protocols = arrayOf("Telnet", "SSH", "TelnetS")
         val protocolAdapter = ArrayAdapter(this, R.layout.spinner_item_retro, protocols)
         protocolAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item_retro)
         spinnerProtocol.adapter = protocolAdapter
@@ -483,10 +489,16 @@ class MainActivity : AppCompatActivity() {
 
                 // Auto-switch port when protocol changes (only if port is default)
                 val currentPort = portEdit.text.toString().toIntOrNull() ?: 0
-                if (selectedSsh && currentPort == 23) {
-                    portEdit.setText("22")
-                } else if (!selectedSsh && currentPort == 22) {
-                    portEdit.setText("23")
+                when (position) {
+                    SavedConnection.PROTOCOL_SSH -> {
+                        if (currentPort == 23 || currentPort == 992) portEdit.setText("22")
+                    }
+                    SavedConnection.PROTOCOL_TELNETS -> {
+                        if (currentPort == 23 || currentPort == 22) portEdit.setText("992")
+                    }
+                    else -> {
+                        if (currentPort == 22 || currentPort == 992) portEdit.setText("23")
+                    }
                 }
             }
 
@@ -758,7 +770,7 @@ class MainActivity : AppCompatActivity() {
 
         // Make URLs clickable
         dialog.findViewById<TextView>(android.R.id.message)?.apply {
-            Linkify.addLinks(this, Linkify.WEB_URLS)
+            Linkify.addLinks(this, Linkify.WEB_URLS or Linkify.EMAIL_ADDRESSES)
             movementMethod = LinkMovementMethod.getInstance()
         }
     }
@@ -1118,7 +1130,7 @@ class MainActivity : AppCompatActivity() {
                                     "screenMode" -> screenMode = (text.toIntOrNull() ?: SavedConnection.SCREEN_MODE_80X25).coerceIn(0, 5)
                                     "font" -> font = (text.toIntOrNull() ?: SavedConnection.FONT_CP437).coerceIn(0, fontDisplayNames.lastIndex)
                                     "hideStatusLine" -> hideStatusLine = text.toBoolean()
-                                    "protocol" -> protocol = (text.toIntOrNull() ?: SavedConnection.PROTOCOL_TELNET).coerceIn(0, 1)
+                                    "protocol" -> protocol = (text.toIntOrNull() ?: SavedConnection.PROTOCOL_TELNET).coerceIn(0, 2)
                                     "username" -> username = text.ifEmpty { null }
                                     "snapshot" -> snapshotPath = text.ifEmpty { null }
                                 }
@@ -1228,6 +1240,7 @@ class MainActivity : AppCompatActivity() {
             // Protocol constants
             const val PROTOCOL_TELNET = 0
             const val PROTOCOL_SSH = 1
+            const val PROTOCOL_TELNETS = 2
         }
     }
 

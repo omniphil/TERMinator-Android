@@ -117,6 +117,7 @@ set(SYNCTERM_SOURCES
 if(HAVE_CRYPTLIB)
     list(APPEND SYNCTERM_SOURCES
         ${SYNCTERM_DIR}/ssh.c
+        ${SYNCTERM_DIR}/telnets.c
         ${SFTP_DIR}/sftp_str.c
         ${SFTP_DIR}/sftp_pkt.c
         ${SFTP_DIR}/sftp_client.c

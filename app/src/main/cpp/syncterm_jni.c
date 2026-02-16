@@ -390,7 +390,7 @@ Java_com_syncterm_android_NativeBridge_nativeConnect(JNIEnv *env, jclass clazz,
     }
 
     // Set connection type based on protocol parameter
-    // CONN_TYPE_TELNET = 3, CONN_TYPE_SSH = 5 (from conn.h)
+    // CONN_TYPE_TELNET = 3, CONN_TYPE_SSH = 5, CONN_TYPE_TELNETS = 12 (from conn.h)
     if (protocol == 5) {  // SSH
 #ifndef WITHOUT_CRYPTLIB
         g_bbs_config.type = CONN_TYPE_SSH;
@@ -412,6 +412,16 @@ Java_com_syncterm_android_NativeBridge_nativeConnect(JNIEnv *env, jclass clazz,
         }
 #else
         LOGE("SSH requested but cryptlib not available - falling back to Telnet");
+        g_bbs_config.type = CONN_TYPE_TELNET;
+        g_bbs_config.conn_type = CONN_TYPE_TELNET;
+#endif
+    } else if (protocol == 12) {  // TelnetS (Telnet over SSL)
+#ifndef WITHOUT_CRYPTLIB
+        g_bbs_config.type = CONN_TYPE_TELNETS;
+        g_bbs_config.conn_type = CONN_TYPE_TELNETS;
+        LOGI("TelnetS connection requested");
+#else
+        LOGE("TelnetS requested but cryptlib not available - falling back to Telnet");
         g_bbs_config.type = CONN_TYPE_TELNET;
         g_bbs_config.conn_type = CONN_TYPE_TELNET;
 #endif

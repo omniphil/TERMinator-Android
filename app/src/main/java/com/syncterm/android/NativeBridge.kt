@@ -46,6 +46,7 @@ object NativeBridge {
     // Connection type constants (from conn.h)
     const val CONN_TYPE_TELNET = 3
     const val CONN_TYPE_SSH = 5
+    const val CONN_TYPE_TELNETS = 12
 
     @JvmStatic
     external fun nativeDisconnect()

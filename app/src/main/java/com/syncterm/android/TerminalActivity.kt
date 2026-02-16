@@ -176,7 +176,7 @@ class TerminalActivity : AppCompatActivity() {
         }
 
         // Validate protocol
-        if (protocol !in 0..1) {
+        if (protocol !in 0..2) {
             protocol = MainActivity.SavedConnection.PROTOCOL_TELNET
         }
 
@@ -190,7 +190,11 @@ class TerminalActivity : AppCompatActivity() {
         binding.connectionStatusBar.visibility = if (hideStatusLine) android.view.View.GONE else android.view.View.VISIBLE
 
         // Set BBS name and protocol in status bar
-        val protocolStr = if (protocol == MainActivity.SavedConnection.PROTOCOL_SSH) "SSH" else "Telnet"
+        val protocolStr = when (protocol) {
+            MainActivity.SavedConnection.PROTOCOL_SSH -> "SSH"
+            MainActivity.SavedConnection.PROTOCOL_TELNETS -> "TelnetS"
+            else -> "Telnet"
+        }
         binding.statusName.text = "$connectionName ($protocolStr)"
 
         setupTerminalView()
@@ -801,10 +805,10 @@ class TerminalActivity : AppCompatActivity() {
             }
 
             // Convert protocol from SavedConnection format to native format
-            val nativeProtocol = if (protocol == MainActivity.SavedConnection.PROTOCOL_SSH) {
-                NativeBridge.CONN_TYPE_SSH
-            } else {
-                NativeBridge.CONN_TYPE_TELNET
+            val nativeProtocol = when (protocol) {
+                MainActivity.SavedConnection.PROTOCOL_SSH -> NativeBridge.CONN_TYPE_SSH
+                MainActivity.SavedConnection.PROTOCOL_TELNETS -> NativeBridge.CONN_TYPE_TELNETS
+                else -> NativeBridge.CONN_TYPE_TELNET
             }
 
             // Connect with timeout
