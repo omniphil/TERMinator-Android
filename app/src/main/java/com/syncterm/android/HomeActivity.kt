@@ -619,6 +619,10 @@ class HomeActivity : AppCompatActivity() {
                 showHelpDialog()
                 true
             }
+            R.id.action_changelog -> {
+                showChangelogDialog()
+                true
+            }
             R.id.action_about -> {
                 showAboutDialog()
                 true
@@ -634,6 +638,17 @@ class HomeActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle(R.string.help_title)
             .setMessage(android.text.Html.fromHtml(getString(R.string.help_content), android.text.Html.FROM_HTML_MODE_COMPACT))
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
+    }
+
+    /**
+     * Show the Changelog dialog.
+     */
+    private fun showChangelogDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.changelog_title)
+            .setMessage(android.text.Html.fromHtml(getString(R.string.changelog_content), android.text.Html.FROM_HTML_MODE_COMPACT))
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }

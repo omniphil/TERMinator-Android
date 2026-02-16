@@ -57,6 +57,7 @@
     <!-- Menu -->
     <string name="menu_new_connection">New Connection</string>
     <string name="menu_help">Help</string>
+    <string name="menu_changelog">Changelog</string>
     <string name="menu_about">About</string>
     <string name="show_cursor">Show Cursor</string>
     <string name="screen_orientation">Screen Orientation</string>
@@ -190,6 +191,14 @@ Access from ⋮ menu on main screen:<br/><br/>
 • Find TERMinator, drag to home<br/>
 • Select BBS connection<br/>
 • Tap widget to instantly connect]]></string>
+
+    <!-- Changelog -->
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_content"><![CDATA[<b>Version 1.1.2</b><br/><br/>
+• Added scrollback using volume keys<br/><br/>
+
+<b>Version 1.1.1</b><br/><br/>
+• Initial release]]></string>
 
     <!-- About -->
     <string name="about_title">About TERMinator</string>
