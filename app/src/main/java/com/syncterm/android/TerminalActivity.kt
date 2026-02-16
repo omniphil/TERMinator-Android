@@ -1010,6 +1010,30 @@ class TerminalActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        // Intercept volume buttons for scrollback navigation
+        if (event.action == KeyEvent.ACTION_DOWN) {
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_VOLUME_UP -> {
+                    // Scroll back into history
+                    binding.terminalView.scrollByLines(1)
+                    return true
+                }
+                KeyEvent.KEYCODE_VOLUME_DOWN -> {
+                    // Scroll toward live
+                    binding.terminalView.scrollByLines(-1)
+                    return true
+                }
+            }
+        } else if (event.action == KeyEvent.ACTION_UP) {
+            // Consume the UP event too so volume UI doesn't appear
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_VOLUME_UP, KeyEvent.KEYCODE_VOLUME_DOWN -> return true
+            }
+        }
+        return super.dispatchKeyEvent(event)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_terminal, menu)
         // Set cursor checkbox state

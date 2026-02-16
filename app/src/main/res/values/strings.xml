@@ -90,8 +90,8 @@ The toolbar at the bottom provides:<br/>
 When zoomed past 100%, drag with one finger to pan.<br/><br/>
 
 <b>Scrollback History</b><br/>
-• Two-finger swipe down to scroll back<br/>
-• Two-finger swipe up toward live view<br/>
+• Volume Up to scroll back in history<br/>
+• Volume Down to scroll toward live<br/>
 • Tap or type to return to live view<br/><br/>
 
 <b>Screen Always On</b><br/>
@@ -193,7 +193,7 @@ Access from ⋮ menu on main screen:<br/><br/>
 
     <!-- About -->
     <string name="about_title">About TERMinator</string>
-    <string name="about_description">TERMinator - BBS Terminal\nVersion 1.1.1\n\nBased on SyncTERM 1.8b\nCopyright © 2007 Stephen Hurd\nLicensed under GNU GPL v2\n\nSSH support via cryptlib (Synchronet)\nCopyright © 1992-2023 Peter Gutmann\nDual licensed: Sleepycat/GPL-compatible\n\nAndroid version by JSONBourne 2026\nJSONBourne Innovations\ndeadmodemsociety.com\n\nSource code:\nhttps://github.com/omniphil/TERMinator-Android\n\nSpecial thx to aNACHRONiST (aNSt) for the artwork and testing!</string>
+    <string name="about_description">TERMinator - BBS Terminal\nVersion 1.1.2\n\nBased on SyncTERM 1.8b\nCopyright © 2007 Stephen Hurd\nLicensed under GNU GPL v2\n\nSSH support via cryptlib (Synchronet)\nCopyright © 1992-2023 Peter Gutmann\nDual licensed: Sleepycat/GPL-compatible\n\nAndroid version by JSONBourne 2026\nJSONBourne Innovations\ndeadmodemsociety.com\n\nSource code:\nhttps://github.com/omniphil/TERMinator-Android\n\nSpecial thx to aNACHRONiST (aNSt) for the artwork and testing!</string>
 
     <!-- File Transfer -->
     <string name="transfer_send">Send File (ZMODEM)</string>

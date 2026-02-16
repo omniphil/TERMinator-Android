@@ -1211,69 +1211,7 @@ class TerminalView @JvmOverloads constructor(
         }
     }
 
-    // Track two-finger scroll for scrollback
-    private var lastTwoFingerY = 0f
-    private var twoFingerScrollActive = false
-    private var accumulatedScrollY = 0f  // Accumulate scroll distance before changing lines
-    private var wasTwoFingerGesture = false  // Suppress tap/keyboard after two-finger gesture
-
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        // Handle two-finger scrolling for scrollback (when not zoomed)
-        if (event.pointerCount == 2 && zoomLevel <= 1.0f) {
-            when (event.actionMasked) {
-                MotionEvent.ACTION_POINTER_DOWN -> {
-                    // Second finger down - start tracking
-                    lastTwoFingerY = (event.getY(0) + event.getY(1)) / 2f
-                    twoFingerScrollActive = true
-                    wasTwoFingerGesture = true
-                    accumulatedScrollY = 0f
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    if (twoFingerScrollActive) {
-                        val currentY = (event.getY(0) + event.getY(1)) / 2f
-                        val deltaY = currentY - lastTwoFingerY
-
-                        // Accumulate scroll distance
-                        accumulatedScrollY += deltaY
-
-                        // Calculate lines to scroll (using cell height as threshold)
-                        val lineThreshold = cellHeight.coerceAtLeast(30f)
-                        val linesToScroll = (accumulatedScrollY / lineThreshold).toInt()
-
-                        if (linesToScroll != 0) {
-                            // Update scrollback info
-                            updateScrollbackInfo()
-
-                            // Swipe down (positive delta) = scroll back in history (increase offset)
-                            // Swipe up (negative delta) = scroll toward live (decrease offset)
-                            val newOffset = (scrollbackOffset + linesToScroll).coerceIn(0, scrollbackAvailable)
-
-                            if (newOffset != scrollbackOffset) {
-                                scrollbackOffset = newOffset
-                                accumulatedScrollY -= linesToScroll * lineThreshold
-                                notifyScrollbackStateChanged()
-                                invalidate()
-                            } else {
-                                accumulatedScrollY = 0f  // Reset if at bounds
-                            }
-                        }
-
-                        lastTwoFingerY = currentY
-                    }
-                }
-                MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-                    twoFingerScrollActive = false
-                    accumulatedScrollY = 0f
-                }
-            }
-            // Don't pass to scale detector if we're scrolling back
-            if (twoFingerScrollActive && scrollbackOffset > 0) {
-                return true
-            }
-        } else if (event.pointerCount == 1) {
-            twoFingerScrollActive = false
-        }
-
         // Let scale gesture detector handle pinch-to-zoom
         scaleGestureDetector.onTouchEvent(event)
 
@@ -1282,13 +1220,6 @@ class TerminalView @JvmOverloads constructor(
             isScaling = true
         } else if (event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) {
             isScaling = false
-            // Clear two-finger flag on final finger lift so next fresh tap works normally
-            val wasTwoFinger = wasTwoFingerGesture
-            wasTwoFingerGesture = false
-            // Suppress tap/keyboard if this UP came from a two-finger gesture
-            if (wasTwoFinger) {
-                return true
-            }
         }
 
         // Only pass to gesture detector if not scaling (single finger)
@@ -1487,6 +1418,20 @@ class TerminalView @JvmOverloads constructor(
     fun jumpToLive() {
         if (scrollbackOffset > 0) {
             scrollbackOffset = 0
+            notifyScrollbackStateChanged()
+            invalidate()
+        }
+    }
+
+    /**
+     * Scroll the scrollback buffer by a number of lines.
+     * Positive = scroll back into history, negative = scroll toward live.
+     */
+    fun scrollByLines(lines: Int) {
+        updateScrollbackInfo()
+        val newOffset = (scrollbackOffset + lines).coerceIn(0, scrollbackAvailable)
+        if (newOffset != scrollbackOffset) {
+            scrollbackOffset = newOffset
             notifyScrollbackStateChanged()
             invalidate()
         }
