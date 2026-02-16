@@ -3465,6 +3465,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 								vc[k].fg=cterm->fg_color;
 								vc[k].bg=cterm->bg_color;
 								vc[k].font = ciolib_attrfont(cterm->attr);
+								vc[k].flags = 0;
 							}
 							vmem_puttext(max_col - i + 1, row, max_col, max_row, vc);
 							free(vc);
@@ -3493,6 +3494,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 								vc[k].fg=cterm->fg_color;
 								vc[k].bg=cterm->bg_color;
 								vc[k].font = ciolib_attrfont(cterm->attr);
+								vc[k].flags = 0;
 							}
 							vmem_puttext(col, row, col + i - 1, max_row, vc);
 							free(vc);
@@ -3967,6 +3969,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 								vc[k].fg=cterm->fg_color;
 								vc[k].bg=cterm->bg_color;
 								vc[k].font = ciolib_attrfont(cterm->attr);
+								vc[k].flags = 0;
 							}
 							col2 = col;
 							row2 = row;
@@ -4061,6 +4064,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 								switch(seq->param_int[i]) {
 									case 0:
 										set_negative(cterm, false);
+										cterm->underline = false;
 										cterm->attr=ti.normattr;
 										attr2palette(cterm->attr, &cterm->fg_color, &cterm->bg_color);
 										FREE_AND_NULL(cterm->fg_tc_str);
@@ -4083,6 +4087,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 										}
 										break;
 									case 4:	/* Underscore */
+										cterm->underline = true;
 										break;
 									case 5:
 									case 6:
@@ -4113,6 +4118,9 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 											attr2palette(cterm->attr, cterm->negative ? NULL : &cterm->fg_color, cterm->negative ? &cterm->fg_color : NULL);
 											FREE_AND_NULL(cterm->fg_tc_str);
 										}
+										break;
+									case 24:	/* Underline off */
+										cterm->underline = false;
 										break;
 									case 25:
 										// TODO: Negative image mode problem.
@@ -4233,6 +4241,7 @@ static void do_ansi(struct cterminal *cterm, char *retbuf, size_t retsize, int *
 							}
 							textattr(cterm->attr);
 							setcolour(cterm->fg_color, cterm->bg_color);
+							setunderline(cterm->underline);
 							break;
 						case 'n':	/* Device Status Report */
 							seq_default(seq, 0, 0);
@@ -4740,6 +4749,7 @@ cterm_reset(struct cterminal *cterm)
 	cterm->saved_mode = 0;
 	cterm->saved_mode_mask = 0;
 	cterm->negative = false;
+	cterm->underline = false;
 	cterm->c64reversemode = false;
 	gettextinfo(&ti);
 	switch (ti.currmode) {
@@ -5479,6 +5489,7 @@ prestel_handle_escaped(struct cterminal *cterm, uint8_t ctrl)
 	}
 	tmpvc[0].legacy_attr=cterm->attr;
 	tmpvc[0].font = ciolib_attrfont(cterm->attr);
+	tmpvc[0].flags = 0;
 	SCR_XY(&sx, &sy);
 	CURR_XY(&x, &y);
 	vmem_puttext(sx, sy, sx, sy, tmpvc);
@@ -6670,6 +6681,7 @@ CIOLIBEXPORT size_t cterm_write(struct cterminal * cterm, const void *vbuf, int 
 							tmpvc[0].fg = cterm->fg_color;
 							tmpvc[0].bg = cterm->bg_color;
 							tmpvc[0].font = ciolib_attrfont(cterm->attr);
+							tmpvc[0].flags = 0;
 							SCR_XY(&sx, &sy);
 							vmem_puttext(sx, sy, sx, sy, tmpvc);
 							ch[1]=0;

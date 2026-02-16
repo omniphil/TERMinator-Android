@@ -13,7 +13,7 @@ import java.io.FileOutputStream
 object DefaultSnapshotHelper {
 
     private const val TAG = "DefaultSnapshotHelper"
-    private const val CURRENT_DEFAULTS_VERSION = 2
+    private const val CURRENT_DEFAULTS_VERSION = 3
 
     private val defaultSnapshots = mapOf(
         Pair("absinthebbs.net", 1940) to "default_snapshots/snapshot_0.png",
@@ -21,7 +21,11 @@ object DefaultSnapshotHelper {
         Pair("20forbeers.com", 1337) to "default_snapshots/snapshot_2.png",
         Pair("bbs.bottomlessabyss.net", 2023) to "default_snapshots/snapshot_3.png",
         Pair("sbbs.dmine.net", 24) to "default_snapshots/snapshot_4.png",
-        Pair("bbs.erb.pw", 23) to "default_snapshots/snapshot_5.png"
+        Pair("bbs.erb.pw", 23) to "default_snapshots/snapshot_5.png",
+        Pair("dura-bbs.net", 6359) to "default_snapshots/snapshot_6.png",
+        Pair("wizardsrainbow.com", 23) to "default_snapshots/snapshot_7.png",
+        Pair("xibalba.l33t.codes", 44510) to "default_snapshots/snapshot_8.png",
+        Pair("d1st.org", 23) to "default_snapshots/snapshot_9.png"
     )
 
     /** All default BBSes in display order. */
@@ -51,6 +55,18 @@ object DefaultSnapshotHelper {
             MainActivity.SavedConnection.SCREEN_MODE_80X25,
             MainActivity.SavedConnection.FONT_CP437),
         DefaultBbs("The Quantum Wormhole", "bbs.erb.pw", 23,
+            MainActivity.SavedConnection.SCREEN_MODE_80X25,
+            MainActivity.SavedConnection.FONT_CP437),
+        DefaultBbs("Dura-Europos", "dura-bbs.net", 6359,
+            MainActivity.SavedConnection.SCREEN_MODE_80X25,
+            MainActivity.SavedConnection.FONT_CP437),
+        DefaultBbs("Wizard's Rainbow", "wizardsrainbow.com", 23,
+            MainActivity.SavedConnection.SCREEN_MODE_80X25,
+            MainActivity.SavedConnection.FONT_CP437),
+        DefaultBbs("Xibalba", "xibalba.l33t.codes", 44510,
+            MainActivity.SavedConnection.SCREEN_MODE_80X25,
+            MainActivity.SavedConnection.FONT_CP437),
+        DefaultBbs("Distortion", "d1st.org", 23,
             MainActivity.SavedConnection.SCREEN_MODE_80X25,
             MainActivity.SavedConnection.FONT_CP437)
     )

@@ -757,10 +757,13 @@ Java_com_syncterm_android_NativeBridge_nativeGetScreenBuffer(JNIEnv *env, jclass
 
     // Pack cell data for Java
     // Values are already masked to 0xFF so bit shifts are safe
+    // Bit 23 (bit 7 of fg byte) carries the underline flag
     for (int i = 0; i < size; i++) {
         unsigned int ch = screen[i].ch & 0xFFu;
         unsigned int attr = screen[i].legacy_attr & 0xFFu;
         unsigned int fg = screen[i].fg & 0xFFu;
+        if (screen[i].flags & VMEM_FLAG_UNDERLINE)
+            fg |= 0x80u;
         unsigned int bg = screen[i].bg & 0xFFu;
         arr[i] = (jint)(ch | (attr << 8) | (fg << 16) | (bg << 24));
     }
@@ -1514,6 +1517,8 @@ Java_com_syncterm_android_NativeBridge_nativeGetScrollbackBuffer(JNIEnv *env, jc
             unsigned int ch = cell->ch & 0xFFu;
             unsigned int attr = cell->legacy_attr & 0xFFu;
             unsigned int fg = cell->fg & 0xFFu;
+            if (cell->flags & VMEM_FLAG_UNDERLINE)
+                fg |= 0x80u;
             unsigned int bg = cell->bg & 0xFFu;
             arr[arr_idx++] = (jint)(ch | (attr << 8) | (fg << 16) | (bg << 24));
         }

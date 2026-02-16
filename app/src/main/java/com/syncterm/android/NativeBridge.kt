@@ -362,4 +362,9 @@ object NativeBridge {
      * Get background color from attribute byte.
      */
     fun attrToBg(attr: Int): Int = (attr shr 4) and 0x07
+
+    /**
+     * Check if cell has underline attribute (bit 23 of packed int).
+     */
+    fun isUnderline(cell: Int): Boolean = ((cell shr 23) and 1) == 1
 }

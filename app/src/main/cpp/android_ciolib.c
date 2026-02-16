@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <pthread.h>
 #include <android/log.h>
 
@@ -57,6 +58,7 @@ static struct android_screen_state {
     int cursor_visible;
     int cursor_type;
     uint8_t current_attr;
+    uint8_t current_flags;
     uint32_t fg_color;
     uint32_t bg_color;
     int dirty;
@@ -283,6 +285,7 @@ static void android_clreol(void) {
             android_state.screen[idx].fg = android_state.fg_color;
             android_state.screen[idx].bg = android_state.bg_color;
             android_state.screen[idx].font = 0;
+            android_state.screen[idx].flags = android_state.current_flags;
         }
         mark_region_dirty(x, y, android_state.width - 1, y);
     }
@@ -344,6 +347,7 @@ static int android_puttext(int sx, int sy, int ex, int ey, void *buf) {
 
                 android_state.screen[idx].ch = src[src_offset];
                 android_state.screen[idx].legacy_attr = src[src_offset + 1];
+                android_state.screen[idx].flags = 0;
             }
         }
         mark_region_dirty(sx - 1, sy - 1, ex - 1, ey - 1);
@@ -550,6 +554,7 @@ static int android_putch(int c) {
             android_state.screen[idx].fg = android_state.fg_color;
             android_state.screen[idx].bg = android_state.bg_color;
             android_state.screen[idx].font = 0;
+            android_state.screen[idx].flags = android_state.current_flags;
             mark_cell_dirty(x, y);
 
             // Advance cursor
@@ -591,6 +596,7 @@ static void android_clrscr(void) {
                 android_state.screen[i].fg = android_state.fg_color;
                 android_state.screen[i].bg = android_state.bg_color;
                 android_state.screen[i].font = 0;
+                android_state.screen[i].flags = android_state.current_flags;
             }
         }
         android_state.cursor_x = 1;
@@ -741,6 +747,7 @@ static void android_textmode(int mode) {
                     android_state.screen[i].fg = 7;
                     android_state.screen[i].bg = 0;
                     android_state.screen[i].font = 0;
+                    android_state.screen[i].flags = 0;
                 }
             }
         } else {
@@ -832,6 +839,7 @@ static void android_wscroll(void) {
             android_state.screen[idx].fg = android_state.fg_color;
             android_state.screen[idx].bg = android_state.bg_color;
             android_state.screen[idx].font = 0;
+            android_state.screen[idx].flags = android_state.current_flags;
         }
         mark_screen_dirty();  // Scroll affects entire screen
     }
@@ -895,6 +903,10 @@ static void android_delline(void) {
                 if (!safe_add_int(last_line, i, &idx)) break;
                 android_state.screen[idx].ch = ' ';
                 android_state.screen[idx].legacy_attr = android_state.current_attr;
+                android_state.screen[idx].fg = android_state.fg_color;
+                android_state.screen[idx].bg = android_state.bg_color;
+                android_state.screen[idx].font = 0;
+                android_state.screen[idx].flags = android_state.current_flags;
             }
         }
         // Mark from deleted line to bottom as dirty
@@ -955,6 +967,10 @@ static void android_insline(void) {
                     if (!safe_add_int(line_offset, i, &idx)) break;
                     android_state.screen[idx].ch = ' ';
                     android_state.screen[idx].legacy_attr = android_state.current_attr;
+                    android_state.screen[idx].fg = android_state.fg_color;
+                    android_state.screen[idx].bg = android_state.bg_color;
+                    android_state.screen[idx].font = 0;
+                    android_state.screen[idx].flags = android_state.current_flags;
                 }
             }
         }
@@ -1054,6 +1070,7 @@ int initciolib(int mode) {
         android_state.screen[i].fg = 7;
         android_state.screen[i].bg = 0;
         android_state.screen[i].font = 0;
+        android_state.screen[i].flags = 0;
     }
 
     // Initialize text_info
@@ -1168,6 +1185,7 @@ int android_ciolib_resize(int width, int height) {
             new_screen[i].fg = android_state.fg_color;
             new_screen[i].bg = android_state.bg_color;
             new_screen[i].font = 0;
+            new_screen[i].flags = android_state.current_flags;
         }
     }
 
@@ -1259,6 +1277,7 @@ void android_ciolib_cleanup(void) {
 #undef attr2palette
 #undef setvideoflags
 #undef getvideoflags
+#undef setunderline
 
 // ciolib_* wrapper functions that cterm.c expects
 // Call android_* functions directly to avoid macro issues
@@ -1420,6 +1439,15 @@ void ciolib_setcolour(uint32_t fg, uint32_t bg) {
     pthread_mutex_lock(&android_state.mutex);
     android_state.fg_color = fg;
     android_state.bg_color = bg;
+    pthread_mutex_unlock(&android_state.mutex);
+}
+
+void ciolib_setunderline(bool underline) {
+    pthread_mutex_lock(&android_state.mutex);
+    if (underline)
+        android_state.current_flags |= VMEM_FLAG_UNDERLINE;
+    else
+        android_state.current_flags &= ~VMEM_FLAG_UNDERLINE;
     pthread_mutex_unlock(&android_state.mutex);
 }
 

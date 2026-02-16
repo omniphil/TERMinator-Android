@@ -143,6 +143,13 @@ class TerminalView @JvmOverloads constructor(
         isAntiAlias = false
     }
 
+    // Paint for underline rendering
+    private val underlinePaint = Paint().apply {
+        style = Paint.Style.STROKE
+        strokeWidth = 3f
+        isAntiAlias = false
+    }
+
     // Last known good dimensions for when keyboard shrinks the view
     private var lastGoodWidth = 0
     private var lastGoodHeight = 0
@@ -978,6 +985,23 @@ class TerminalView @JvmOverloads constructor(
                 canvas.drawText(displayChar.toString(), left, top + textBaseline, textPaint)
             }
         }
+
+        // Draw underline if set (ESC[4m) or cell is part of a detected URL
+        if (NativeBridge.isUnderline(cell) || isCellInUrl(y, x)) {
+            underlinePaint.color = colorPalette[fgIndex]
+            val lineY = bottom - (cellHeight * 0.1f)
+            canvas.drawLine(left, lineY, right, lineY, underlinePaint)
+        }
+    }
+
+    /**
+     * Check if a cell at the given row/col is part of a detected URL.
+     */
+    private fun isCellInUrl(row: Int, col: Int): Boolean {
+        for (region in detectedUrls) {
+            if (isPointInUrlRegion(row, col, region)) return true
+        }
+        return false
     }
 
     /**
