@@ -150,6 +150,7 @@ class MainActivity : AppCompatActivity() {
                 // Swap items in the list
                 Collections.swap(connectionList, fromPos, toPos)
                 connectionAdapter.notifyItemMoved(fromPos, toPos)
+                connectionAdapter.syncItems(connectionList.toList())
                 saveConnections()
                 return true
             }
@@ -173,62 +174,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadConnections() {
+        // Ensure defaults exist (handles fresh installs and migrations)
+        DefaultSnapshotHelper.migrateDefaultConnections(this)
+
         // Load saved connections from SharedPreferences
         val prefs = getSharedPreferences("connections", MODE_PRIVATE)
         val count = prefs.getInt("count", 0)
 
         connectionList.clear()
 
-        // Add some default BBSes if first run
-        if (count == 0) {
-            addDefaultConnections()
-        } else {
-            for (i in 0 until count) {
-                val name = prefs.getString("name_$i", "") ?: ""
-                val host = prefs.getString("host_$i", "") ?: ""
-                val port = prefs.getInt("port_$i", 23).coerceIn(1, 65535)  // Validate port range
-                val screenMode = prefs.getInt("screenMode_$i", SavedConnection.SCREEN_MODE_80X25)
-                val font = prefs.getInt("font_$i", SavedConnection.FONT_CP437)
-                val hideStatusLine = prefs.getBoolean("hideStatusLine_$i", false)
-                val thumbnailPath = prefs.getString("thumbnailPath_$i", null)
-                val snapshotPath = prefs.getString("snapshotPath_$i", null)
-                val protocol = prefs.getInt("protocol_$i", SavedConnection.PROTOCOL_TELNET)
-                val username = prefs.getString("username_$i", null)
-                val encryptedPassword = prefs.getString("encryptedPassword_$i", null)
-                if (name.isNotEmpty() && host.isNotEmpty()) {
-                    connectionList.add(SavedConnection(name, host, port, screenMode, font, hideStatusLine, thumbnailPath, snapshotPath, protocol, username, encryptedPassword))
-                }
+        for (i in 0 until count) {
+            val name = prefs.getString("name_$i", "") ?: ""
+            val host = prefs.getString("host_$i", "") ?: ""
+            val port = prefs.getInt("port_$i", 23).coerceIn(1, 65535)  // Validate port range
+            val screenMode = prefs.getInt("screenMode_$i", SavedConnection.SCREEN_MODE_80X25)
+            val font = prefs.getInt("font_$i", SavedConnection.FONT_CP437)
+            val hideStatusLine = prefs.getBoolean("hideStatusLine_$i", false)
+            val thumbnailPath = prefs.getString("thumbnailPath_$i", null)
+            val snapshotPath = prefs.getString("snapshotPath_$i", null)
+            val protocol = prefs.getInt("protocol_$i", SavedConnection.PROTOCOL_TELNET)
+            val username = prefs.getString("username_$i", null)
+            val encryptedPassword = prefs.getString("encryptedPassword_$i", null)
+            if (name.isNotEmpty() && host.isNotEmpty()) {
+                connectionList.add(SavedConnection(name, host, port, screenMode, font, hideStatusLine, thumbnailPath, snapshotPath, protocol, username, encryptedPassword))
             }
         }
 
-        connectionAdapter.submitList(connectionList.toList())
+        // Use refreshAll instead of submitList to force rebinding all items.
+        // Snapshot images may have been overwritten on disk with the same path,
+        // and DiffUtil can't detect file content changes when the path string is unchanged.
+        connectionAdapter.refreshAll(connectionList.toList())
         updateEmptyState()
-    }
-
-    private fun addDefaultConnections() {
-        // Add some well-known BBSes
-        val snapshot0 = DefaultSnapshotHelper.copyDefaultSnapshot(this, "absinthebbs.net", 1940)
-        connectionList.add(SavedConnection(
-            name = "aBSiNTHE BBS",
-            host = "absinthebbs.net",
-            port = 1940,
-            screenMode = SavedConnection.SCREEN_MODE_80X40,
-            font = SavedConnection.FONT_TOPAZ_PLUS,  // Topaz Plus (Amiga) for aBSiNTHE
-            thumbnailPath = snapshot0?.first,
-            snapshotPath = snapshot0?.second
-        ))
-        val snapshot1 = DefaultSnapshotHelper.copyDefaultSnapshot(this, "telnet.deadmodemsociety.com", 1337)
-        connectionList.add(SavedConnection(
-            name = "Dead Modem Society",
-            host = "telnet.deadmodemsociety.com",
-            port = 1337,
-            screenMode = SavedConnection.SCREEN_MODE_80X25,
-            font = SavedConnection.FONT_CP437,
-            thumbnailPath = snapshot1?.first,
-            snapshotPath = snapshot1?.second
-        ))
-        saveConnections()
-        connectionAdapter.submitList(connectionList.toList())
     }
 
     private fun saveConnections() {
@@ -1263,6 +1239,19 @@ class MainActivity : AppCompatActivity() {
             val diffResult = DiffUtil.calculateDiff(diffCallback)
             items = newList
             diffResult.dispatchUpdatesTo(this)
+        }
+
+        /** Update internal items list without dispatching adapter changes.
+         *  Used after drag-to-reorder where notifyItemMoved already handled the visual update. */
+        fun syncItems(newList: List<SavedConnection>) {
+            items = newList
+        }
+
+        /** Force full rebind of all items. Used when file contents on disk may have changed
+         *  (e.g., snapshot images overwritten) even though paths in SavedConnection are the same. */
+        fun refreshAll(newList: List<SavedConnection>) {
+            items = newList
+            notifyDataSetChanged()
         }
 
         override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): ViewHolder {

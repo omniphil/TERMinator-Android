@@ -194,7 +194,13 @@ Access from ⋮ menu on main screen:<br/><br/>
 
     <!-- Changelog -->
     <string name="changelog_title">Changelog</string>
-    <string name="changelog_content"><![CDATA[<b>Version 1.1.3</b><br/><br/>
+    <string name="changelog_content"><![CDATA[<b>Version 1.1.4</b><br/><br/>
+• Added 4 new default BBSes with snapshots<br/>
+• New defaults auto-added for existing users<br/>
+• Fixed phonebook order lost when adding entries<br/>
+• Fixed snapshots not refreshing in phonebook<br/><br/>
+
+<b>Version 1.1.3</b><br/><br/>
 • Added TelnetS (Telnet over SSL) support<br/>
 • Fixed virtual keyboard Enter key on some devices<br/><br/>
 
@@ -206,7 +212,7 @@ Access from ⋮ menu on main screen:<br/><br/>
 
     <!-- About -->
     <string name="about_title">About TERMinator</string>
-    <string name="about_description">TERMinator - BBS Terminal\nVersion 1.1.3\n\nBased on SyncTERM 1.8b\nCopyright © 2007 Stephen Hurd\nLicensed under GNU GPL v2\n\nSSH support via cryptlib (Synchronet)\nCopyright © 1992-2023 Peter Gutmann\nDual licensed: Sleepycat/GPL-compatible\n\nAndroid version by JSONBourne 2026\nJSONBourne Innovations\njsonbourneinnovations@gmail.com\ndeadmodemsociety.com\n\nSource code:\nhttps://github.com/omniphil/TERMinator-Android\n\nSpecial thx to aNACHRONiST (aNSt) for the artwork and testing!</string>
+    <string name="about_description">TERMinator - BBS Terminal\nVersion 1.1.4\n\nBased on SyncTERM 1.8b\nCopyright © 2007 Stephen Hurd\nLicensed under GNU GPL v2\n\nSSH support via cryptlib (Synchronet)\nCopyright © 1992-2023 Peter Gutmann\nDual licensed: Sleepycat/GPL-compatible\n\nAndroid version by JSONBourne 2026\nJSONBourne Innovations\njsonbourneinnovations@gmail.com\ndeadmodemsociety.com\n\nSource code:\nhttps://github.com/omniphil/TERMinator-Android\n\nSpecial thx to aNACHRONiST (aNSt) for the artwork and testing!</string>
 
     <!-- File Transfer -->
     <string name="transfer_send">Send File (ZMODEM)</string>

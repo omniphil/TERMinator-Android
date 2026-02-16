@@ -219,14 +219,11 @@ class HomeActivity : AppCompatActivity() {
     }
 
     /**
-     * Ensure default phonebook connections exist on first run.
-     * Called early in onCreate so connections are ready before Quick Connect.
+     * Ensure default phonebook connections exist.
+     * Handles both fresh installs and migrating new defaults for existing users.
      */
     private fun ensureDefaultConnections() {
-        val prefs = getSharedPreferences("connections", MODE_PRIVATE)
-        if (prefs.getInt("count", 0) == 0) {
-            addDefaultConnections()
-        }
+        DefaultSnapshotHelper.migrateDefaultConnections(this)
     }
 
     /**
@@ -266,49 +263,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
         return connections
-    }
-
-    /**
-     * Add default BBS connections on first run.
-     */
-    private fun addDefaultConnections() {
-        val prefs = getSharedPreferences("connections", MODE_PRIVATE)
-        val editor = prefs.edit()
-
-        // aBSiNTHE BBS
-        editor.putString("name_0", "aBSiNTHE BBS")
-        editor.putString("host_0", "absinthebbs.net")
-        editor.putInt("port_0", 1940)
-        editor.putInt("screenMode_0", MainActivity.SavedConnection.SCREEN_MODE_80X40)
-        editor.putInt("font_0", MainActivity.SavedConnection.FONT_TOPAZ_PLUS)
-        editor.putBoolean("hideStatusLine_0", false)
-        editor.putInt("protocol_0", MainActivity.SavedConnection.PROTOCOL_TELNET)
-
-        // Copy default snapshot for aBSiNTHE
-        val snapshot0 = DefaultSnapshotHelper.copyDefaultSnapshot(this, "absinthebbs.net", 1940)
-        if (snapshot0 != null) {
-            editor.putString("thumbnailPath_0", snapshot0.first)
-            editor.putString("snapshotPath_0", snapshot0.second)
-        }
-
-        // Dead Modem Society
-        editor.putString("name_1", "Dead Modem Society")
-        editor.putString("host_1", "telnet.deadmodemsociety.com")
-        editor.putInt("port_1", 1337)
-        editor.putInt("screenMode_1", MainActivity.SavedConnection.SCREEN_MODE_80X25)
-        editor.putInt("font_1", MainActivity.SavedConnection.FONT_CP437)
-        editor.putBoolean("hideStatusLine_1", false)
-        editor.putInt("protocol_1", MainActivity.SavedConnection.PROTOCOL_TELNET)
-
-        // Copy default snapshot for Dead Modem Society
-        val snapshot1 = DefaultSnapshotHelper.copyDefaultSnapshot(this, "telnet.deadmodemsociety.com", 1337)
-        if (snapshot1 != null) {
-            editor.putString("thumbnailPath_1", snapshot1.first)
-            editor.putString("snapshotPath_1", snapshot1.second)
-        }
-
-        editor.putInt("count", 2)
-        editor.commit()
     }
 
     /**
